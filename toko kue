@@ -198,3 +198,23 @@ void customizeAndOrderCake() {
             cout << "Pesanan dibatalkan.\n";
         }
     }
+void showReceipt() {
+        if (loggedInUser == nullptr) {
+            cout << "Kamu harus login terlebih dahulu!\n";
+            return;
+        }
+
+        cout << "+-------------------------------------------+\n";
+        cout << "|         Receipt untuk " << left << setw(20) << loggedInUser->username << "|\n";
+        cout << "+-------------------------------------------+\n";
+        double total = 0.0;
+        for (const auto& order : loggedInUser->orders) {
+            cout << "| Cake: " << left << setw(34) << order.cakeName << "  |\n";
+            cout << "| Ukuran: " << left << setw(34) << order.size << "|\n";
+            cout << "| Harga: Rp " << left << setw(32) << fixed << setprecision(0) << order.price << "|\n";
+            cout << "+-------------------------------------------+\n";
+            total += order.price;
+        }
+        cout << "| Total: Rp " << left << setw(30) << fixed << setprecision(0) << total << "  |\n";
+        cout << "+-------------------------------------------+\n";
+    }

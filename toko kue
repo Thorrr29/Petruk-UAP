@@ -7,3 +7,24 @@
 #include <cstdlib>
 
 using namespace std;
+
+template <typename T>
+struct CakeSize {
+    T size;
+    double price;
+};
+
+template <typename T>
+struct Cake {
+    T name;
+    T description;
+    vector<CakeSize<T>> sizes;
+};
+
+template <typename T>
+struct Order {
+    T cakeName;
+    T size;
+    double price;
+    bool confirmed;
+};

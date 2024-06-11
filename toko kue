@@ -94,3 +94,21 @@ void registerUser() {
             cout << "Username sudah diambil!\n";
         }
     }
+bool loginUser() {
+        T username, password;
+        cout << "Login:\n";
+        cout << "Masukkan username: ";
+        cin >> username;
+        cout << "Masukkan password: ";
+        cin >> password;
+
+        if(users.find(username) != users.end() && users[username].password == password) {
+            loggedInUser = &users[username];
+            cout << "Login Sukses!\n";
+            system("cls");
+            return true;
+        } else {
+            cout << "Username atau Password tidak valid!\n";
+            return false;
+        }
+    }

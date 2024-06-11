@@ -61,3 +61,19 @@ void saveUserToFile(const User<T>& user) {
             file.close();
         }
     }
+
+public:
+    Bakery() {
+        cakes.push_back({"Chocolate Cake", "Delicious chocolate cake", {{"Small", 100000}, {"Medium", 150000}, {"Large", 200000}}});
+        cakes.push_back({"Vanilla Cake", "Classic vanilla cake", {{"Small", 100000}, {"Medium", 125000}, {"Large", 170000}}});
+        cakes.push_back({"Red Velvet Cake", "Smooth red velvet cake", {{"Small", 120000}, {"Medium", 180000}, {"Large", 240000}}});
+        cakes.push_back({"Black Forest Cake", "Rich black forest cake", {{"Small", 130000}, {"Medium", 190000}, {"Large", 250000}}});
+        cakes.push_back({"Cheesecake", "Creamy cheesecake", {{"Small", 140000}, {"Medium", 200000}, {"Large", 260000}}});
+        cakes.push_back({"Carrot Cake", "Healthy carrot cake", {{"Small", 110000}, {"Medium", 160000}, {"Large", 210000}}});
+        cakes.push_back({"Lemon Cake", "Tangy lemon cake", {{"Small", 100000}, {"Medium", 135000}, {"Large", 180000}}});
+        cakes.push_back({"Strawberry Shortcake", "Sweet shortcake", {{"Small", 125000}, {"Medium", 175000}, {"Large", 225000}}});
+        cakes.push_back({"Tiramisu", "Classic Italian tiramisu", {{"Small", 150000}, {"Medium", 220000}, {"Large", 290000}}});
+        cakes.push_back({"Fruit Cake", "Fruit-rich cake", {{"Small", 160000}, {"Medium", 230000}, {"Large", 300000}}});
+
+        loadUsersFromFile();
+    }

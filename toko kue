@@ -218,3 +218,55 @@ void showReceipt() {
         cout << "| Total: Rp " << left << setw(30) << fixed << setprecision(0) << total << "  |\n";
         cout << "+-------------------------------------------+\n";
     }
+
+bool isLoggedIn() {
+        return loggedInUser != nullptr;
+    }
+};
+
+int main() {
+    Bakery<string> bakery;
+    int choice;
+    bool loggedIn = false;
+
+    cout << "Selamat datang di Hammer Bakery!\n";
+    while (!loggedIn) {
+        cout << "\n1. Register\n2. Login\n";
+        cout << "Masukkan pilihanmu: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                bakery.registerUser();
+                break;
+            case 2:
+                loggedIn = bakery.loginUser();
+                break;
+            default:
+                cout << "Pilihan tidak valid! Coba lagi.\n";
+        }
+    }
+
+    while (true) {
+        cout << "\nMenu:\n1. Tampilkan Katalog Cake\n2. Pesan Cake\n3. Tampilkan Receipt\n4. Exit\n";
+        cout << "Masukkan pilihanmu: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                bakery.showCakeCatalog();
+                break;
+            case 2:
+                bakery.customizeAndOrderCake();
+                break;
+            case 3:
+                bakery.showReceipt();
+                break;
+            case 4:
+                cout << "Terimakasih sudah berkunjung di Hammer Bakery!\n";
+                return 0;
+            default:
+                cout << "Pilihan tidak valid! Coba lagi.\n";
+        }
+    }
+}

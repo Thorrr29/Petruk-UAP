@@ -127,3 +127,74 @@ void showCakeCatalog() {
         }
         cout << "*Notes (Harga untuk 1 loyang)\n";
     }
+void customizeAndOrderCake() {
+        if (loggedInUser == nullptr) {
+            cout << "Kamu harus login terlebih dahulu!\n";
+            return;
+        }
+
+        vector<Order<T>> currentOrders;
+        int cakeIndex, sizeIndex;
+        T cakeName, size;
+        double price = 0.0;
+
+        while (true) {
+            cout << "Masukkan nomor cake yang ingin kamu pesan: ";
+            cin >> cakeIndex;
+
+            if (cakeIndex < 1 || cakeIndex > cakes.size()) {
+                cout << "Nomor cake tidak valid!\n";
+                continue;
+            }
+
+            const auto& selectedCake = cakes[cakeIndex - 1];
+            cakeName = selectedCake.name;
+
+            cout << cakeName << " Tersedia dalam Ukuran dan Harga (per loyang):\n";
+            for (size_t i = 0; i < selectedCake.sizes.size(); ++i) {
+                cout << i + 1 << ". " << selectedCake.sizes[i].size << ": Rp " << fixed << setprecision(0) << selectedCake.sizes[i].price  << " (Harga untuk 1 loyang)\n";
+            }
+
+            cout << "Masukkan nomor Ukuran: ";
+            cin >> sizeIndex;
+
+            if (sizeIndex < 1 || sizeIndex > selectedCake.sizes.size()) {
+                cout << "Nomor Ukuran tidak valid!\n";
+                continue;
+            }
+
+            size = selectedCake.sizes[sizeIndex - 1].size;
+            price = selectedCake.sizes[sizeIndex - 1].price * 0.5;
+
+            Order<T> newOrder = {cakeName, size, price, false};
+            currentOrders.push_back(newOrder);
+
+            cout << "Apakah kamu ingin menambah pesanan? (yes/no): ";
+            string addMore;
+            cin >> addMore;
+            if (addMore == "no") {
+                break;
+            }
+        }
+
+        cout << "\nKonfirmasi Pesanan:\n";
+        double total = 0.0;
+        for (const auto& order : currentOrders) {
+            cout << "Cake: " << order.cakeName << ", Ukuran: " << order.size << ", Harga: Rp " << fixed << setprecision(0) << order.price << "\n";
+            total += order.price;
+        }
+        cout << "Total Harga: Rp " << fixed << setprecision(0) << total << "\n";
+        cout << "Apakah kamu ingin mengonfirmasi pesanan? (yes/no): ";
+
+        string confirmation;
+        cin >> confirmation;
+        if (confirmation == "yes") {
+            for (auto& order : currentOrders) {
+                order.confirmed = true;
+                loggedInUser->orders.push_back(order);
+            }
+            cout << "Konfirmasi pesanan berhasil!\n";
+        } else {
+            cout << "Pesanan dibatalkan.\n";
+        }
+    }

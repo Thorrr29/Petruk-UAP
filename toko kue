@@ -112,3 +112,18 @@ bool loginUser() {
             return false;
         }
     }
+void showCakeCatalog() {
+        cout << "\nKatalog:\n";
+        cout << "+------------------------------------------------------------------------------------+\n";
+        cout << "| No |        Nama Cake        |         Keterangan         |     Ukuran dan Harga   |\n";
+        cout << "+------------------------------------------------------------------------------------+\n";
+        for (size_t i = 0; i < cakes.size(); ++i) {
+            const auto& cake = cakes[i];
+            cout << "| " << setw(2) << i + 1 << " | " << setw(22) << cake.name << "  | " << setw(25) << cake.description << "  |                        |\n";
+            for (const auto& size : cake.sizes) {
+                cout << "|    |                         |                            | " << setw(8) << size.size << ": Rp " << fixed << setprecision(0) << size.price <<"    |\n";
+            }
+            cout << "+------------------------------------------------------------------------------------+\n";
+        }
+        cout << "*Notes (Harga untuk 1 loyang)\n";
+    }

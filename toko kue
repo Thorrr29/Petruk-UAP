@@ -43,3 +43,14 @@ private:
     vector<Cake<T>> cakes;
     unordered_map<T, User<T>> users;
     User<T>* loggedInUser = nullptr;
+
+void loadUsersFromFile() {
+        ifstream file("data.txt");
+        if (file.is_open()) {
+            T username, password;
+            while (file >> username >> password) {
+                users[username] = {username, password};
+            }
+            file.close();
+        }
+    }

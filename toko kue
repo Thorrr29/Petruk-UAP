@@ -28,3 +28,18 @@ struct Order {
     double price;
     bool confirmed;
 };
+
+template <typename T>
+class User {
+public:
+    T username;
+    T password;
+    vector<Order<T>> orders;
+};
+
+template <typename T>
+class Bakery {
+private:
+    vector<Cake<T>> cakes;
+    unordered_map<T, User<T>> users;
+    User<T>* loggedInUser = nullptr;

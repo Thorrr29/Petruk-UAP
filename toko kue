@@ -54,3 +54,10 @@ void loadUsersFromFile() {
             file.close();
         }
     }
+void saveUserToFile(const User<T>& user) {
+        ofstream file("data.txt", ios::app);
+        if (file.is_open()) {
+            file << user.username << " " << user.password << "\n";
+            file.close();
+        }
+    }

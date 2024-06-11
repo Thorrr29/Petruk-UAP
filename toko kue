@@ -77,3 +77,20 @@ public:
 
         loadUsersFromFile();
     }
+void registerUser() {
+        T username, password;
+        cout << "Register user baru:\n";
+        cout << "Masukkan username: ";
+        cin >> username;
+        cout << "Masukkan password: ";
+        cin >> password;
+        
+        if(users.find(username) == users.end()) {
+            User<T> newUser = {username, password};
+            users[username] = newUser;
+            saveUserToFile(newUser);
+            cout << "User berhasil diregister!\n";
+        } else {
+            cout << "Username sudah diambil!\n";
+        }
+    }
